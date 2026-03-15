@@ -48,7 +48,7 @@
                         <tr class="bg-gray-50 border-b border-gray-100 text-gray-500 uppercase text-xs tracking-wider">
                             <th class="text-left px-6 py-4">#</th>
                             <th class="text-left px-6 py-4">Order Number</th>
-                            <th class="text-left px-6 py-4">Order By /th>
+                            <th class="text-left px-6 py-4">Order By </th>
                             <th class="text-left px-6 py-4">Status</th>
                             <th class="text-left px-6 py-4">Date</th>
                             <th class="text-right px-6 py-4">Actions</th>

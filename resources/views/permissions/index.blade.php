@@ -217,10 +217,12 @@
             <div>
                 <h1 class="page-title">Permissions</h1>
             </div>
+
             <a href="{{ route('permissions.create') }}" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-gray-500 text-sm font-semibold px-4 py-2.5 rounded-xl shadow-md shadow-brand-600/30 transition-all duration-200 hover:scale-105">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                 Add Permission
             </a>
+
         </div>
 
         {{-- Flash --}}
