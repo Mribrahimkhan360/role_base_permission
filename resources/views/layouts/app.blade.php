@@ -470,8 +470,8 @@
                 Dashboard
             </a>
 
-            <p class="nav-section">Management</p>
-
+            @can('user_menu')
+                <p class="nav-section">Management</p>
             <a href="{{ route('users.index') }}"
                class="nav-link {{ request()->routeIs('users.*') ? 'nav-active' : '' }}">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -479,7 +479,9 @@
                 </svg>
                 Users
             </a>
+            @endcan
 
+            @can('role_menu')
             <a href="{{ route('roles.index') }}"
                class="nav-link {{ request()->routeIs('roles.*') ? 'nav-active' : '' }}">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -487,7 +489,9 @@
                 </svg>
                 Roles
             </a>
+            @endcan
 
+            @can('permissions_menu')
             <a href="{{ route('permissions.index') }}"
                class="nav-link {{ request()->routeIs('permissions.*') ? 'nav-active' : '' }}">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -495,17 +499,21 @@
                 </svg>
                 Permissions
             </a>
+            @endcan
 
             <p class="nav-section">Catalog</p>
 
-            <a href="{{ route('brands.index') }}"
-               class="nav-link {{ request()->routeIs('brands.*') ? 'nav-active' : '' }}">
-                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
-                </svg>
-                Brands
-            </a>
+            @can('brand_menu')
+                <a href="{{ route('brands.index') }}"
+                   class="nav-link {{ request()->routeIs('brands.*') ? 'nav-active' : '' }}">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                    </svg>
+                    Brands
+                </a>
+            @endcan
 
+            @can('Products_menu')
             <a href="{{ route('products.index') }}"
                class="nav-link {{ request()->routeIs('products.*') ? 'nav-active' : '' }}">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -513,7 +521,9 @@
                 </svg>
                 Products
             </a>
+            @endcan
 
+            @can('stock_menu')
             <a href="{{ route('stocks.index') }}"
                class="nav-link {{ request()->routeIs('stocks.*') ? 'nav-active' : '' }}">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -521,6 +531,7 @@
                 </svg>
                 Stocks
             </a>
+            @endcan
 
             <a href="{{ route('orders.index') }}"
                class="nav-link {{ request()->routeIs('orders.*') ? 'nav-active' : '' }}">

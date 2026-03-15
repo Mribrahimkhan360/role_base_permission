@@ -243,7 +243,7 @@
                 <tr>
                     <th>#</th>
                     <th>Permission Name</th>
-                    <th>Guard</th>
+{{--                    <th>Guard</th>--}}
                     <th>Created At</th>
                     <th>Action</th>
                 </tr>
@@ -253,7 +253,7 @@
                     <tr>
                         <td class="row-num">{{ $key + 1 }}</td>
                         <td><span class="perm-name-badge">{{ $permission->name }}</span></td>
-                        <td><span class="guard-badge">{{ $permission->guard_name }}</span></td>
+{{--                        <td><span class="guard-badge">{{ $permission->guard_name }}</span></td>--}}
                         <td class="date-text">{{ $permission->created_at->format('d M Y') }}</td>
                         <td>
                             <div class="action-cell">

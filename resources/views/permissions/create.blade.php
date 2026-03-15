@@ -54,12 +54,8 @@
 
                             <!-- Guard Name -->
                             <div>
-                                <label class="block text-gray-700 font-medium mb-2">Guard Name</label>
-                                <select name="guard_name"
-                                        class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                    <option value="web" {{ old('guard_name', 'web') == 'web' ? 'selected' : '' }}>web</option>
-                                    <option value="api" {{ old('guard_name') == 'api' ? 'selected' : '' }}>api</option>
-                                </select>
+{{--                                <label class="block text-gray-700 font-medium mb-2">Guard Name</label>--}}
+                                <input type="hidden" name="guard_name" value="{{ old('guard_name', 'web') }}">
                             </div>
                         </div>
 
