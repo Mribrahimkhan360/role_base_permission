@@ -1,12 +1,13 @@
 <?php
 
+
 namespace App\Repositories\Eloquents;
 
 use App\Models\Order;
 use App\Models\Product;
-use App\Repositories\Contracts\OrderRepositoryInterface;
+use App\Repositories\Contracts\SaleRepositoryInterface;
 
-class OrderRepository implements OrderRepositoryInterface
+class SaleRepository implements SaleRepositoryInterface
 {
     protected $model;
     public function __construct(Order $order,Product $product)
@@ -58,14 +59,5 @@ class OrderRepository implements OrderRepositoryInterface
         $order = $this->find($id);
         $order->update($data);
         return $order;
-    }
-
-    /**
-     * Delete an order by ID.
-     */
-    public function delete($id)
-    {
-        $order = $this->find($id);
-        return $order->delete();
     }
 }

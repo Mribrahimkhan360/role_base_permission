@@ -539,7 +539,8 @@
                 Orders
             </a>
 
-            <a href="" class="nav-link">
+            <a href="{{ route('sales.create') }}" class="nav-link
+                    {{ request()->routeIs('sales.*') ? 'nav-active' : '' }}">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M3 3v18h18M7 14l4-4 3 3 5-5"/>

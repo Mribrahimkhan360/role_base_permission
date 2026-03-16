@@ -59,14 +59,12 @@
                             <tr class="hover:bg-gray-50 transition-colors duration-150">
 
                                 {{-- Row Number --}}
-                                <td class="px-6 py-4 text-gray-400 font-medium">1</td>
+                                <td class="px-6 py-4 text-gray-400 font-medium">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</td>
 
                                 {{-- Order ID --}}
                                 <td class="px-6 py-4">
                                     <span class="font-mono font-semibold text-gray-800">#{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</span>
                                 </td>
-
-
 
                                 {{-- Total Quantity --}}
                                 <td class="px-6 py-4 text-gray-700 font-semibold">

@@ -9,6 +9,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SaleController;
 
 
 
@@ -43,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('orders',OrderController::class);
 
     Route::resource('orders', OrderController::class);
+
+    Route::resource('sales', SaleController::class);
 
     Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
         ->name('orders.updateStatus');
