@@ -440,7 +440,7 @@
                     </svg>
                 </div>
                 <div>
-                    <div class="logo-text">AdminPanel</div>
+{{--                    <div class="logo-text"></div>--}}
                 </div>
             </div>
             <span class="logo-badge">v2.0</span>
@@ -459,9 +459,7 @@
 
         <!-- Nav -->
         <nav class="sidebar-nav">
-
             <p class="nav-section">Overview</p>
-
             <a href="{{ route('dashboard') }}"
                class="nav-link {{ request()->routeIs('dashboard') ? 'nav-active' : '' }}">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -539,6 +537,14 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.6 8H17m-10 0a1 1 0 11-2 0 1 1 0 012 0zm10 0a1 1 0 11-2 0 1 1 0 012 0z"/>
                 </svg>
                 Orders
+            </a>
+
+            <a href="" class="nav-link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3 3v18h18M7 14l4-4 3 3 5-5"/>
+                </svg>
+                Sales
             </a>
 
         </nav>
