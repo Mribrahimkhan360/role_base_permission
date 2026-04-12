@@ -22,55 +22,61 @@ class CustomerSaleController extends Controller
     {
         $serialNumbers = $request->input('serial_number',[]);
 
-        $foundSerial = Stock::whereIn('serial_number',$serialNumbers)->pluck('serial_number')->toArray();;
+        // Get Stocks by Serial
+        $stocks = Stock::whereIn('serial_number',$serialNumbers)->get();
 
-        $missingSerial = array_diff($serialNumbers,$foundSerial);
+        $foundSerials = $stocks->pluck('serial_number')->toArray();
+        $invalidSerials = array_diff($serialNumbers, $foundSerials);
 
-        $stockIds = Stock::whereIn('serial_number', $serialNumbers)->pluck('id')->toArray();
+        if (!empty($invalidSerials))
+        {
+            return back()->with('error','Invalid serial number!');
+        }
 
-        $saleIds = Sale::whereIn('stock_id',$stockIds)->pluck('id')->toArray();
+        $stockIds = $stocks->pluck('id')->toArray();
 
-        $existStock = Sale::whereIn('stock_id', $stockIds)->exists();
-        $foundStockId = Sale::whereIn('stock_id',$stockIds)->pluck('stock_id')->toArray();
-        $missingStock = array_diff($stockIds,$foundStockId);
+        // Get sales related to stock
+        $sales = Sale::whereIn('stock_id',$stockIds)->get();
 
-        $validUserId = Sale::whereIn('stock_id', $stockIds)->pluck('user_id')->toArray();
-//        dd($validUserId);
-        $authUserId = auth()->id();
-//        dd($authUserId);
+        if ($sales->isEmpty())
+        {
+          return back()->with('error','Stock does not exist!');
+        }
 
-        if (in_array($authUserId, $validUserId)) {
+        $saleIds = $sales->pluck('id')->toArray();
+        $validUserIds = $sales->pluck('user_id')->toArray();
 
-            $SaleId = CustomerSale::whereIn('sale_id',$saleIds)->exists();
-            if ($SaleId)
-            {
-                return back()->with('error','Serial number is already sold!');
-            }
-            if (!empty($missingSerial)) {
-                return back()->with('error', 'Invalid serial number!');
-            }
-            if ($missingStock) {
-                return back()->with('error', 'Stock is does not exist!');
-            }
-
-            if (!$existStock) {
-                return back()->with('error', 'Stock is does not exist!');
-            }
-            $userId = $request->input('user_id');
-            if (!$userId) {
-                return back()->with('error', 'Please select user');
-            }
-
-            foreach ($saleIds as $saleId) {
-                CustomerSale::create([
-                    'user_id' => $userId,
-                    'sale_id' => $saleId,
-                ]);
-            }
-
-            return back()->with('success', 'Successfully Customer sale!');
-        }else{
+        // Check auth user
+        if (!in_array(auth()->id(), $validUserIds)){
             return back()->with('error','This serial number can not exist!');
         }
+        
+        // Check already sold
+        $alreadySold = CustomerSale::whereIn('sale_id',$saleIds)->exists();
+        if ($alreadySold)
+        {
+            return back()->with('error','Serial number is already sold!');
+        }
+
+        $userId = $request->input('user_id');
+        if (!$userId)
+        {
+            return back()->with('error', 'Please select user');
+        }
+
+        // Insert data
+
+        $data = [];
+        foreach ($saleIds as $saleId)
+        {
+            $data[] = [
+                'user_id' => $userId,
+                'sale_id' => $saleId,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+        CustomerSale::insert($data);
+        return back()->with('success', 'Successfully Customer sale!');
     }
 }
