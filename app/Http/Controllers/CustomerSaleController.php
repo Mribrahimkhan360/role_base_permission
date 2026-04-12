@@ -50,7 +50,7 @@ class CustomerSaleController extends Controller
         if (!in_array(auth()->id(), $validUserIds)){
             return back()->with('error','This serial number can not exist!');
         }
-        
+
         // Check already sold
         $alreadySold = CustomerSale::whereIn('sale_id',$saleIds)->exists();
         if ($alreadySold)
@@ -65,7 +65,6 @@ class CustomerSaleController extends Controller
         }
 
         // Insert data
-
         $data = [];
         foreach ($saleIds as $saleId)
         {
@@ -76,6 +75,7 @@ class CustomerSaleController extends Controller
                 'updated_at' => now(),
             ];
         }
+
         CustomerSale::insert($data);
         return back()->with('success', 'Successfully Customer sale!');
     }
